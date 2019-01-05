@@ -5,6 +5,8 @@ from datetime import datetime, timedelta
 class v8log:
     def __init__(self, db_path):
         self.connection = connect(db_path)
+        self.execute_query('pragma synchronous = 0')
+        self.execute_query('pragma journal_mode = truncate')
 
     def __del__(self):
         self.connection.close()
